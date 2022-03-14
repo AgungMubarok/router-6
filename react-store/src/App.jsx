@@ -1,11 +1,12 @@
-import Navbar from "./components/navbar/Navbar";
-import ProductCard from "./components/product/Product";
-import Search from "./components/search/Search";
-import styles from "./App.module.css";
-import { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import Navbar from './components/navbar/Navbar';
+import ProductCard from './components/product/Product';
+import Search from './components/search/Search';
+import styles from './App.module.css';
+import { useEffect, useState } from 'react';
 
-import * as productAPI from "./api/product.api";
-import * as searchHelper from "./helpers/search.helper";
+import * as productAPI from './api/product.api';
+import * as searchHelper from './helpers/search.helper';
 
 function App() {
   // products menyimpan hasil original product.
@@ -20,19 +21,19 @@ function App() {
 
   const [loading, setLoading] = useState(true);
 
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState('');
 
   // karena kita akan call api.
   // maka kita butuh fase componentDidMount.
   useEffect(() => {
     productAPI
       .fetchAllProducts()
-      .then((result) => {
+      .then(result => {
         setProducts(result);
         setFiltered(result); // Kita samakan filtered dengan yang original pada saat pertama kali.
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
@@ -47,7 +48,7 @@ function App() {
     }
   }, [keyword]);
 
-  const handleSearch = (updates) => {
+  const handleSearch = updates => {
     setKeyword(updates);
   };
 
@@ -62,7 +63,7 @@ function App() {
         <h1>Loading...</h1>
       ) : (
         <div className={styles.products}>
-          {filtered.map((product) => (
+          {filtered.map(product => (
             <ProductCard
               key={product.id}
               id={product.id}

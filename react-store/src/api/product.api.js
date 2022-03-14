@@ -1,4 +1,4 @@
-const BASE_URL = "https://fakestoreapi.com";
+const BASE_URL = 'https://fakestoreapi.com';
 
 export async function fetchAllProducts() {
   try {
@@ -6,6 +6,17 @@ export async function fetchAllProducts() {
     const data = await response.json();
     // biar ada delay.
     for (let i = 0; i < 1e6; i++) {}
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function fetchProductsDetails(id) {
+  try {
+    const response = await fetch(`${BASE_URL}/products/${id}`);
+    const data = await response.json();
+    // biar ada delay.
     return data;
   } catch (error) {
     throw error;
